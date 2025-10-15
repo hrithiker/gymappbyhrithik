@@ -22,8 +22,12 @@ const Detail = ({ exerciseDetail }) => {
       { threshold: 0.2 }
     );
 
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    const currentRef = containerRef.current;
+    if (currentRef) observer.observe(currentRef);
+
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+    };
   }, []);
 
   const extraDetail = [
@@ -83,7 +87,7 @@ const Detail = ({ exerciseDetail }) => {
         {/* Extra Details with Staggered Animation */}
         {extraDetail.map((item, index) => (
           <Stack
-            key={item.name}
+            key={`${item.name}-${index}`} // ✅ unique key
             direction="row"
             gap={3}
             alignItems="center"

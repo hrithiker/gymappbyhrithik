@@ -13,24 +13,25 @@ const Aboutus = () => {
 
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
-      <Stack 
-        gap="40px" 
-        sx={{ 
-          flexDirection: { lg: "row" }, 
+      <Stack
+        gap="40px"
+        sx={{
+          flexDirection: { lg: "row" },
           alignItems: { lg: "flex-start" },
           justifyContent: "space-between"
         }}
       >
         {/* Image Section */}
-        <Box sx={{ 
-          flex: { lg: 1 }, 
+        <Box sx={{
+          flex: { lg: 1 },
           maxWidth: { lg: "500px" },
           display: "flex",
           justifyContent: "center"
         }}>
-          <img 
-            src={barbell} 
-            loading="lazy" 
+          <img
+            src={barbell}
+            alt="Barbell exercise illustration" // ✅ added alt
+            loading="lazy"
             className="detail-image"
             style={{
               width: "100%",
@@ -43,14 +44,14 @@ const Aboutus = () => {
         </Box>
 
         {/* Content Section */}
-        <Box sx={{ 
+        <Box sx={{
           flex: { lg: 1.2 },
           maxWidth: { lg: "700px" }
         }}>
           <Stack gap="32px">
             {/* Main Title */}
             <Typography
-              sx={{ 
+              sx={{
                 fontSize: { lg: "64px", xs: "36px" },
                 textAlign: { xs: "center", lg: "left" }
               }}
@@ -136,7 +137,7 @@ const Aboutus = () => {
                   <Typography
                     key={index}
                     component="li"
-                    sx={{ 
+                    sx={{
                       fontSize: { lg: "18px", xs: "16px" },
                       color: "#4F4C4C",
                       lineHeight: 1.7,
@@ -153,8 +154,8 @@ const Aboutus = () => {
             </Box>
 
             {/* Closing Statement */}
-            <Box sx={{ 
-              textAlign: "center", 
+            <Box sx={{
+              textAlign: "center",
               mt: 4,
               p: 3,
               backgroundColor: "#FFF3F4",

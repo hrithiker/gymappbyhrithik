@@ -11,46 +11,14 @@ const Navbar = () => {
   const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
   const [mobileOpen, setMobileOpen] = useState(false);
 
- const navItems = [
-  { name: "Home", path: "/" }, // Remove isActive: true
-  { name: "Exercises", path: "#exercises", isExternal: true },
-  { name: "About", path: "/Aboutus" },
-];
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Exercises", path: "#exercises", isExternal: true },
+    { name: "About", path: "/Aboutus" },
+  ];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const NavLink = ({ item, isMobile = false }) => {
-    const commonStyles = {
-      textDecoration: "none",
-      color: "#3A1212",
-      fontWeight: "600",
-      fontSize: isMobile ? "18px" : "20px",
-      padding: isMobile ? "12px 16px" : "8px 16px",
-      borderRadius: "8px",
-      transition: "all 0.3s ease",
-      position: "relative",
-      borderBottom: item.isActive ? "3px solid #FF2625" : "none",
-      "&:hover": {
-        color: "#FF2625",
-        backgroundColor: isMobile ? "#FFF3F4" : "transparent",
-      }
-    };
-
-    if (item.isExternal) {
-      return (
-        <a href={item.path} style={commonStyles}>
-          {item.name}
-        </a>
-      );
-    }
-
-    return (
-      <Link to={item.path} style={commonStyles}>
-        {item.name}
-      </Link>
-    );
   };
 
   const AuthButton = () => (
@@ -123,40 +91,24 @@ const Navbar = () => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        sx={{
-          px: { xs: 2, sm: 4, md: 6 },
-          py: 2,
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
+        sx={{ px: { xs: 2, sm: 4, md: 6 }, py: 2, maxWidth: "1200px", margin: "0 auto" }}
       >
-        {/* Logo */}
         <Link to="/">
           <img
             src={Logo}
             alt="logo"
-            style={{
-              width: "48px",
-              height: "48px",
-              transition: "transform 0.3s ease",
-            }}
+            style={{ width: "48px", height: "48px", transition: "transform 0.3s ease" }}
             onMouseEnter={(e) => (e.target.style.transform = "scale(1.1)")}
             onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <Stack
-          direction="row"
-          gap="40px"
-          alignItems="center"
-          sx={{ display: { xs: "none", md: "flex" } }}
-        >
+        <Stack direction="row" gap="40px" alignItems="center" sx={{ display: { xs: "none", md: "flex" } }}>
           {navItems.map((item) => (
             <Box
               key={item.name}
               sx={{
-                position: "relative",
                 "& a": {
                   textDecoration: "none",
                   color: "#3A1212",
@@ -164,12 +116,11 @@ const Navbar = () => {
                   fontSize: "20px",
                   padding: "8px 16px",
                   transition: "all 0.3s ease",
-                  // borderBottom: item.isActive ? "3px solid #FF2625" : "none",
                   display: "block",
                 },
                 "& a:hover": {
                   color: "#FF2625",
-                }
+                },
               }}
             >
               {item.isExternal ? (
@@ -183,10 +134,7 @@ const Navbar = () => {
         </Stack>
 
         {/* Mobile Menu Button */}
-        <IconButton
-          sx={{ display: { md: "none" }, color: "#FF2625" }}
-          onClick={handleDrawerToggle}
-        >
+        <IconButton sx={{ display: { md: "none" }, color: "#FF2625" }} onClick={handleDrawerToggle}>
           <MenuIcon />
         </IconButton>
       </Stack>
@@ -230,13 +178,12 @@ const Navbar = () => {
                     padding: "12px 16px",
                     borderRadius: "8px",
                     transition: "all 0.3s ease",
-                    // borderBottom: item.isActive ? "3px solid #FF2625" : "none",
                     display: "block",
                   },
                   "& a:hover": {
                     color: "#FF2625",
                     backgroundColor: "#FFF3F4",
-                  }
+                  },
                 }}
               >
                 {item.isExternal ? (

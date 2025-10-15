@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 import "./App.css";
 import ExerciseDetail from "./pages/ExerciseDetail";
@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Aboutus from "./components/Aboutus";
-import login from "./components/login";
+import Login from "./components/Login";
 
 const App = () => {
   // const { user, loginWithRedirect } = useAuth0();
@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
         <Route path="Aboutus" element={<Aboutus />} />
-        {/* <Route path="login" element={<login />} /> */}
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </Box>

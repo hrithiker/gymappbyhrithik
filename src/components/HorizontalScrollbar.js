@@ -6,7 +6,7 @@ import ExerciseCard from "./ExerciseCard";
 import RightArrowIcon from "../assets/icons/right-arrow.png";
 import LeftArrowIcon from "../assets/icons/left-arrow.png";
 
-const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart }) => {
+const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardClick }) => {
   const scrollRef = useRef(null);
 
   if (!data || data.length === 0) {
@@ -17,7 +17,7 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart }) => {
     );
   }
 
-  // Drag to scroll (desktop & mobile)
+  // Drag to scroll
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -46,7 +46,7 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart }) => {
 
   return (
     <Box sx={{ position: "relative" }}>
-      {/* Desktop Arrows */}
+      {/* Left Arrow */}
       <Box
         onClick={() => scrollBy(-200)}
         sx={{
@@ -68,6 +68,7 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart }) => {
         <img src={LeftArrowIcon} alt="left" style={{ width: "60%", height: "60%" }} />
       </Box>
 
+      {/* Right Arrow */}
       <Box
         onClick={() => scrollBy(200)}
         sx={{
@@ -107,14 +108,23 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart }) => {
         onTouchMove={handleMouseMove}
         onTouchEnd={handleMouseUp}
       >
-        {data.map((item) => (
+        {data.map((item, index) => (
           <Box
-            key={item.id || item}
+            key={item.id || `${item}-${index}`} // unique key
             sx={{
               minWidth: { xs: "120px", sm: "150px", md: "200px" },
               m: { xs: "0 10px", sm: "0 20px", md: "0 40px" },
               display: "flex",
               justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              if (!isBodyPart && onCardClick) {
+                onCardClick(item.id); // navigate to exercise detail
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              } else if (isBodyPart && setBodyPart) {
+                setBodyPart(item);
+              }
             }}
           >
             {isBodyPart ? (
