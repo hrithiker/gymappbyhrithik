@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';   // ✅ fixed import
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 
@@ -11,9 +11,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0Provider
-
-        domain="dev-ilxofi7ebioc06e0.us.auth0.com"
-        clientId="wFPYBtIli8qYpj2Y8oRFShTdd8LUShxD"
+        domain={import.meta.env.VITE_AUTH0_DOMAIN}
+        clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
         authorizationParams={{
           redirect_uri: window.location.origin
         }}
