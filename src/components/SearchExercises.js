@@ -45,59 +45,96 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
     }
   };
 
-  return (
-    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
-      <Typography
-        fontWeight={700}
-        sx={{ fontSize: { lg: "44px", xs: "30px" } }}
-        mb="50px"
-        textAlign="center"
+ return (
+  <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
+    <Typography
+      fontWeight={700}
+      sx={{ 
+        fontSize: { lg: "44px", xs: "28px" },
+        lineHeight: { lg: "50px", xs: "35px" },
+        textAlign: "center",
+        px: { xs: 2, sm: 0 }
+      }}
+      mb="40px"
+    >
+      Awesome Exercises You <br />
+      Should Know
+    </Typography>
+    
+    <Box 
+      position="relative" 
+      mb="60px"
+      sx={{ 
+        width: "100%",
+        maxWidth: { lg: "800px", xs: "100%" },
+        px: { xs: 1, sm: 0 }
+      }}
+    >
+      <TextField
+        sx={{
+          input: { 
+            fontWeight: "700", 
+            border: "none", 
+            borderRadius: "4px",
+            padding: { xs: "12px 20px", sm: "16px 24px" },
+            fontSize: { xs: "14px", sm: "16px" }
+          },
+          width: "100%",
+          backgroundColor: "#fff",
+          borderRadius: "40px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              border: "none",
+            },
+          },
+        }}
+        value={search}
+        onChange={(e) => setSearch(e.target.value.toLowerCase())}
+        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+        placeholder="Search Exercises"
+        type="text"
+      />
+      <Button
+        className="search-btn"
+        sx={{
+          bgcolor: "#FF2625",
+          color: "#fff",
+          textTransform: "none",
+          width: { lg: "160px", xs: "100px" },
+          height: { xs: "48px", sm: "56px" },
+          position: "absolute",
+          right: "0px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          fontSize: { lg: "18px", xs: "14px" },
+          fontWeight: 600,
+          borderRadius: "40px",
+          boxShadow: "0 4px 15px rgba(255, 38, 37, 0.3)",
+          "&:hover": {
+            bgcolor: "#e02020",
+          }
+        }}
+        onClick={handleSearch}
       >
-        Awesome Exercises You <br />
-        Should Know
-      </Typography>
-      <Box position="relative" mb="72px">
-        <TextField
-          // height="76px"
-          sx={{
-            input: { fontWeight: "700", border: "none", borderRadius: "4px" },
-            width: { lg: "1170px", xs: "350px" },
-            backgroundColor: "#fff",
-            borderRadius: "40px",
-          }}
-          height="76px"
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          placeholder="Search Exercises"
-          type="text"
-        />
-        <Button
-          className="search-btn"
-          sx={{
-            bgcolor: "#FF2625",
-            color: "#fff",
-            textTransform: "none",
-            width: { lg: "173px", xs: "80px" },
-            height: "56px",
-            position: "absolute",
-            right: "0px",
-            fontSize: { lg: "20px", xs: "14px" },
-          }}
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
-      </Box>
-      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <HorizontalScrollbar
-          data={bodyParts}
-          bodyPart={bodyPart}
-          setBodyPart={setBodyPart}
-          isBodyPart
-        />
-      </Box>
-    </Stack>
-  );
+        Search
+      </Button>
+    </Box>
+    
+    <Box sx={{ 
+      position: "relative", 
+      width: "100%", 
+      p: { xs: "10px", sm: "20px" } 
+    }}>
+      <HorizontalScrollbar
+        data={bodyParts}
+        bodyPart={bodyPart}
+        setBodyPart={setBodyPart}
+        isBodyPart
+      />
+    </Box>
+  </Stack>
+);
 };
 
 export default SearchExercises;
