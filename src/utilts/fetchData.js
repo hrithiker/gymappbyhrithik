@@ -1,4 +1,4 @@
-// fetchData.js
+// src/utilts/fetchData.js
 
 export const exerciseOptions = {
   method: 'GET',
@@ -7,22 +7,30 @@ export const exerciseOptions = {
     offset: '0',
   },
   headers: {
-    'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
-    'x-rapidapi-host': import.meta.env.VITE_RAPIDAPI_HOST,
+    'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+    'x-rapidapi-host': process.env.REACT_APP_RAPIDAPI_HOST,
   },
 };
 
 export const youtubeOptions = {
   method: 'GET',
   headers: {
-    'x-rapidapi-key': import.meta.env.VITE_YOUTUBE_RAPIDAPI_KEY,
-    'x-rapidapi-host': import.meta.env.VITE_YOUTUBE_RAPIDAPI_HOST,
+    'x-rapidapi-key': process.env.REACT_APP_YOUTUBE_RAPIDAPI_KEY,
+    'x-rapidapi-host': process.env.REACT_APP_YOUTUBE_RAPIDAPI_HOST,
   },
 };
 
-export const fetchData = async (url, options) => {
-  const response = await fetch(url, options);
-  const data = await response.json();
 
-  return data;
+export const fetchData = async (url, options) => {
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
 };
