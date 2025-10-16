@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Stack, Box, Container } from "@mui/material";
 import barbell from "../assets/images/barbell.jpg";
 
-const Aboutus = () => {
+const AboutUs = () => {
   const features = [
     "Personalized Workouts: Tailor your exercise routines based on your fitness goals, preferences, and level of experience.",
     "Comprehensive Exercise Database: Access a vast library of exercises with detailed instructions and demonstrations to ensure proper form and technique.",
@@ -177,4 +177,4 @@ const Aboutus = () => {
   );
 };
 
-export default Aboutus;
+export default AboutUs;

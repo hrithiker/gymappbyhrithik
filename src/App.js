@@ -8,7 +8,7 @@ import ExerciseDetail from "./pages/ExerciseDetail";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Aboutus from "./components/AboutUs";
+import AboutUs from "./components/AboutUs";
 import Login from "./components/Login";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
-        <Route path="aboutus" element={<Aboutus />} />
+        <Route path="aboutus" element={<AboutUs />} />
         <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
