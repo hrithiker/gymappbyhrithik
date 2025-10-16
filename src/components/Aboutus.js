@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Stack, Box, Container } from "@mui/material";
-import barbell from "../assets/images/barbell.jpg";
+import barbell from "../assets/images/barbell.jpg"; // imported image used
 
 const AboutUs = () => {
   const features = [
@@ -22,15 +22,17 @@ const AboutUs = () => {
         }}
       >
         {/* Image Section */}
-        <Box sx={{
-          flex: { lg: 1 },
-          maxWidth: { lg: "500px" },
-          display: "flex",
-          justifyContent: "center"
-        }}>
+        <Box
+          sx={{
+            flex: { lg: 1 },
+            maxWidth: { lg: "500px" },
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
           <img
-            src={barbell}
-            alt="Barbell exercise illustration" // ✅ added alt
+            src={barbell} // using imported image
+            alt="Barbell exercise illustration"
             loading="lazy"
             className="detail-image"
             style={{
@@ -44,10 +46,7 @@ const AboutUs = () => {
         </Box>
 
         {/* Content Section */}
-        <Box sx={{
-          flex: { lg: 1.2 },
-          maxWidth: { lg: "700px" }
-        }}>
+        <Box sx={{ flex: { lg: 1.2 }, maxWidth: { lg: "700px" } }}>
           <Stack gap="32px">
             {/* Main Title */}
             <Typography
@@ -142,9 +141,7 @@ const AboutUs = () => {
                       color: "#4F4C4C",
                       lineHeight: 1.7,
                       mb: 2,
-                      "&::marker": {
-                        color: "#FF2625"
-                      }
+                      "&::marker": { color: "#FF2625" }
                     }}
                   >
                     {feature}
@@ -154,14 +151,16 @@ const AboutUs = () => {
             </Box>
 
             {/* Closing Statement */}
-            <Box sx={{
-              textAlign: "center",
-              mt: 4,
-              p: 3,
-              backgroundColor: "#FFF3F4",
-              borderRadius: "15px",
-              borderLeft: "4px solid #FF2625"
-            }}>
+            <Box
+              sx={{
+                textAlign: "center",
+                mt: 4,
+                p: 3,
+                backgroundColor: "#FFF3F4",
+                borderRadius: "15px",
+                borderLeft: "4px solid #FF2625"
+              }}
+            >
               <Typography
                 sx={{ fontSize: { lg: "28px", xs: "22px" } }}
                 fontWeight={700}
