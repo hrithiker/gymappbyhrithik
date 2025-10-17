@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Box, Stack, Typography, Container } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faWhatsapp, faYoutube, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram, faWhatsapp, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"; // Solid version
 
 import Logo from "../assets/images/Logo-1.png";
 
@@ -36,10 +37,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: faWhatsapp, color: "#25D366", url: "https://wa.me/919142524362" },
-    { icon: faYoutube, color: "#FF0000", url: "https://youtube.com" },
-    { icon: faInstagram, color: "#E4405F", url: "https://instagram.com" },
-    { icon: faLinkedin, color: "#0077B5", url: "https://linkedin.com" }
+    { icon: faEnvelope, color: "#FF0000", url: "https://mail.google.com/mail/u/0/?fs=1&to=hrithik.choudhary110@gmail.com&tf=cm" },
+    { icon: faWhatsapp, color: "#25D366", url: "" },
+    { icon: faInstagram, color: "#E4405F", url: "https://www.instagram.com/thehrithiker?igsh=MTNicWs1OXZrZGw2cw%3D%3D&utm_source=ig_contact_invite" },
+    { icon: faLinkedin, color: "#0077B5", url: "https://www.linkedin.com/in/hrithik-choudhary-hr/" }
   ];
 
   return (

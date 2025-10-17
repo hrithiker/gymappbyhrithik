@@ -17,31 +17,53 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardCl
     );
   }
 
-  // Drag to scroll
+  // FIXED: Drag to scroll with passive event handling
   let isDown = false;
   let startX;
   let scrollLeft;
 
   const handleMouseDown = (e) => {
     isDown = true;
-    startX = e.pageX || e.touches[0].pageX;
+    startX = e.pageX || (e.touches && e.touches[0].pageX);
     scrollLeft = scrollRef.current.scrollLeft;
+    
+    // FIX: Add active cursor style
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grabbing';
+      scrollRef.current.style.userSelect = 'none';
+    }
   };
 
   const handleMouseMove = (e) => {
     if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX || e.touches[0].pageX;
+    
+    // FIX: Only preventDefault if the event is cancelable
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+    
+    const x = e.pageX || (e.touches && e.touches[0].pageX);
     const walk = x - startX;
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollLeft - walk;
+    }
   };
 
   const handleMouseUp = () => {
     isDown = false;
+    
+    // FIX: Reset cursor style
+    if (scrollRef.current) {
+      scrollRef.current.style.cursor = 'grab';
+      scrollRef.current.style.userSelect = 'auto';
+    }
   };
 
   const scrollBy = (distance) => {
-    scrollRef.current.scrollBy({ left: distance, behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: distance, behavior: "smooth" });
+    }
   };
 
   return (
@@ -63,6 +85,7 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardCl
           justifyContent: "center",
           cursor: "pointer",
           zIndex: 2,
+          touchAction: 'manipulation', // FIX: Add touch action
         }}
       >
         <img src={LeftArrowIcon} alt="left" style={{ width: "60%", height: "60%" }} />
@@ -85,12 +108,13 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardCl
           justifyContent: "center",
           cursor: "pointer",
           zIndex: 2,
+          touchAction: 'manipulation', // FIX: Add touch action
         }}
       >
         <img src={RightArrowIcon} alt="right" style={{ width: "60%", height: "60%" }} />
       </Box>
 
-      {/* Scrollable Container */}
+      {/* Scrollable Container - FIXED */}
       <Box
         ref={scrollRef}
         sx={{
@@ -99,6 +123,15 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardCl
           scrollBehavior: "smooth",
           cursor: "grab",
           p: 1,
+          // FIX: Add CSS properties to prevent passive events
+          WebkitOverflowScrolling: 'touch',
+          touchAction: 'pan-x',
+          userSelect: 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -110,17 +143,18 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyPart, onCardCl
       >
         {data.map((item, index) => (
           <Box
-            key={item.id || `${item}-${index}`} // unique key
+            key={item.id || `${item}-${index}`}
             sx={{
               minWidth: { xs: "120px", sm: "150px", md: "200px" },
               m: { xs: "0 10px", sm: "0 20px", md: "0 40px" },
               display: "flex",
               justifyContent: "center",
               cursor: "pointer",
+              touchAction: 'pan-x', // FIX: Add touch action to items
             }}
             onClick={() => {
               if (!isBodyPart && onCardClick) {
-                onCardClick(item.id); // navigate to exercise detail
+                onCardClick(item.id);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               } else if (isBodyPart && setBodyPart) {
                 setBodyPart(item);
