@@ -29,7 +29,7 @@ const Navbar = () => {
             Hi, {user?.name}
           </Typography>
           <button
-            onClick={() => logout()}
+            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
             style={{
               backgroundColor: "#FF2625",
               color: "white",
